@@ -34,7 +34,7 @@ async function register(req, res) {
       "INSERT INTO registration (username,email,password) VALUES (?,?,?) ",
       [username, email, hashedPassword]
     );
-    const user_id = registrationResult.insertId;
+    const user_id = registrationResult[0].insertId;
     await db.query(
       "INSERT INTO profile (user_id,firstname,lastname) VALUES (?,?,?) ",
       [user_id, firstname, lastname]
