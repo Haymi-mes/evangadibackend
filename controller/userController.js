@@ -30,7 +30,7 @@ async function register(req, res) {
     // Encrypt the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const [registrationResult] = await db.query(
+    const registrationResult = await db.query(
       "INSERT INTO registration (username,email,password) VALUES (?,?,?) ",
       [username, email, hashedPassword]
     );
